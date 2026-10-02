@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thakur Bank</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="splash"><span class="mark big">T</span><b>THAKUR BANK</b><small>Banking you can trust</small><div class="ld"><i></i></div></div><div class="bg"><i></i><i></i><i></i></div><canvas id="fx"></canvas><div class="floor"></div>
+<header class="nav">
+  <div class="logo"><span class="mark">T</span><div><b>Thakur Bank</b><small>Banking you can trust</small></div></div>
+  <div class="right"><button id="theme" class="ic" title="Dark / light">🌙</button><span id="navRight"></span></div>
+</header>
+<main>
+<section id="authView" class="auth">
+  <div class="hero">
+    <span class="badge">🔒 Secure · Instant · Free</span>
+    <h1>Smart banking,<br><span class="grad">built on trust.</span></h1>
+    <p>Open an account in under a minute. Deposit, withdraw, send money and watch your balance grow.</p><p class="type">Experience <span class="grad" id="tw"></span><span class="caret">|</span></p>
+    <div class="stage"><div class="coin c1">₹</div><div class="coin c2">₹</div><div class="coin c3">₹</div>
+      <div class="fw"><div class="floatcard tilt"><div class="chip"></div><b>THAKUR BANK</b><div class="num">1000 1000 0001</div><small>PREMIUM SAVINGS</small></div></div></div>
+  </div>
+  <div class="card authCard">
+    <div id="pg-home" class="pg"><h3>Welcome 👋</h3><p class="mut">Choose how you want to continue</p>
+      <button class="tile tilt" data-go="login"><span>🔐</span><div><b>Customer Login</b><small>Access your account</small></div></button>
+      <button class="tile tilt" data-go="open"><span>🏦</span><div><b>Open New Account</b><small>Start with just ₹500</small></div></button>
+      <button class="tile tilt" data-go="admin"><span>🛡️</span><div><b>Admin Login</b><small>Bank staff only</small></div></button></div>
+    <div id="pg-login" class="pg" hidden><button class="back" data-go="home">← Back</button><h3>Customer Login</h3>
+      <form id="login"><label>Account Number<input name="account" required placeholder="e.g. 1000100001"></label><label>Password<input name="password" type="password" required></label><button class="btn">Login →</button></form></div>
+    <div id="pg-open" class="pg" hidden><button class="back" data-go="home">← Back</button><h3>Open New Account</h3>
+      <form id="open"><label>Full Name<input name="name" required></label>
+      <label>Account Type<select name="type" id="atype"><option value="Savings">💰 Savings Account (min ₹500)</option><option value="Current">🏢 Current Account (min ₹1,000)</option></select></label>
+      <div class="two"><label>Phone<input name="phone" required maxlength="10" placeholder="10 digits"></label><label>Email<input name="email" type="email" required></label></div>
+      <div class="two"><label>Password<input name="password" type="password" required minlength="6"></label><label><span id="depTxt">Opening Deposit (min ₹500)</span><input name="deposit" type="number" min="500" step="0.01" required></label></div>
+      <button class="btn">Create My Account ✨</button><p id="newAcc" class="success" hidden></p></form></div>
+    <div id="pg-admin" class="pg" hidden><button class="back" data-go="home">← Back</button><h3>Admin Login</h3>
+      <form id="adminF"><label>Admin Username<input name="username" required placeholder="admin1 - admin5"></label><label>Password<input name="password" type="password" required></label><button class="btn dark">Admin Login 🛡️</button></form></div>
+  </div>
+</section>
+
+<section id="userView" class="shell" hidden>
+  <nav class="side"><button data-go="dash" class="on">🏠 Dashboard</button><button data-go="dep">⬇ Deposit</button><button data-go="wd">⬆ Withdraw</button><button data-go="tr">➜ Transfer</button><button data-go="hist">📜 History</button><button data-go="card">💳 My Card</button><button data-go="fd">🏦 Fixed Deposit</button><button data-go="loan">💼 Loans</button><button data-go="emi">🧮 EMI Calculator</button><button data-go="set">⚙️ Settings</button></nav>
+  <div class="content">
+    <div id="pg-dash" class="pg"><button class="back" data-out="1">← Back to Home (Logout)</button><h2 class="hello" id="uHello"></h2>
+      <div class="grid"><div class="dcard tilt"><div class="top"><b>THAKUR BANK</b><span id="uType">SAVINGS ACCOUNT</span></div><div class="chip"></div><small>Available Balance</small><h2 id="uBal">₹0.00</h2><div class="num" id="uNum"></div>
+        <div class="meta"><div><small>Card Holder</small><b id="uName"></b></div><div><small>Member Since</small><b id="uSince"></b></div></div></div>
+        <div class="quick"><button class="tile tilt" data-go="dep"><span>⬇</span><div><b>Deposit</b><small>Add money</small></div></button><button class="tile tilt" data-go="wd"><span>⬆</span><div><b>Withdraw</b><small>Take cash</small></div></button><button class="tile tilt" data-go="tr"><span>➜</span><div><b>Transfer</b><small>Send to anyone</small></div></button><button class="tile tilt" data-go="hist"><span>📜</span><div><b>History</b><small>All activity</small></div></button></div></div>
+      <div class="stats"><div class="stat tilt g"><small>Total Money In</small><b id="tIn">₹0</b></div><div class="stat tilt r"><small>Total Money Out</small><b id="tOut">₹0</b></div><div class="stat tilt"><small>Transactions</small><b id="tCnt">0</b></div></div>
+      <div class="two2"><div class="card"><h3>📈 Balance Trend</h3><div id="chart"></div></div><div class="card"><h3>🍩 Money Flow</h3><div id="donut"></div></div></div>
+      <div class="card"><div class="bar"><h3>Recent Activity</h3><button class="sm" data-go="hist">View all →</button></div><div class="scroll"><table><tbody id="uRecent"></tbody></table></div></div></div>
+    <div id="pg-dep" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="card tilt narrow"><h2>⬇ Deposit Money</h2><p class="mut">Current balance: <b class="bn"></b></p>
+      <form id="dep"><label>Amount (₹)<input name="amount" type="number" step="0.01" min="1" required></label><button class="btn">Deposit Money</button></form></div></div>
+    <div id="pg-wd" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="card tilt narrow"><h2>⬆ Withdraw Money</h2><p class="mut">Current balance: <b class="bn"></b> · Minimum balance <span id="minTxt">₹500</span></p>
+      <form id="wd"><label>Amount (₹)<input name="amount" type="number" step="0.01" min="1" required></label><button class="btn">Withdraw Money</button></form></div></div>
+    <div id="pg-tr" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="card tilt narrow"><h2>➜ Transfer Money</h2><p class="mut">Current balance: <b class="bn"></b></p>
+      <form id="tr"><label>Receiver Account Number<input name="to" required></label><div class="two"><label>Amount (₹)<input name="amount" type="number" step="0.01" min="1" required></label><label>Note (optional)<input name="note" maxlength="40"></label></div><button class="btn">Send Money</button></form></div></div>
+    <div id="pg-card" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="two2"><div class="card"><div class="fw3"><div class="flip" id="flip"><div class="face tilt"><b>THAKUR BANK</b><div class="chip"></div><div class="num" id="cNum"></div><div class="meta"><div><small>Card Holder</small><b id="cName"></b></div><div><small>Expires</small><b id="cExp"></b></div></div></div><div class="face back"><div class="strip"></div><p class="cv">CVV <b id="cCvv"></b></p><small>Tap to flip back</small></div></div></div><p class="mut">👆 Tap the card to flip it</p></div>
+<div class="card"><h3>Card Controls</h3><p>Status: <b id="cSt"></b></p><button class="btn" id="cTog">❄️ Freeze Card</button><p class="mut">A frozen card blocks withdrawals and transfers. Deposits still work.</p></div></div></div>
+<div id="pg-fd" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="two2"><div class="card"><h2>🏦 Open Fixed Deposit</h2><p class="mut">Balance: <b class="bn"></b></p><form id="fd"><label>Amount (₹, min 1,000)<input name="amount" id="fdAmt" type="number" min="1000" step="0.01" required></label><label>Duration<select name="months" id="fdMon"><option value="6">6 months · 6.5% p.a.</option><option value="12">1 year · 7% p.a.</option><option value="24">2 years · 7.25% p.a.</option><option value="36">3 years · 7.5% p.a.</option></select></label><p class="success" id="fdPrev">Enter an amount to see your maturity value</p><button class="btn">Lock Money 🔒</button></form></div><div class="card"><h3>My Fixed Deposits</h3><div id="fdList"></div></div></div></div>
+<div id="pg-loan" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="two2"><div class="card"><h2>💼 Apply for a Loan</h2><form id="ln"><label>Loan Type<select name="kind" id="lnKind"><option value="Personal">Personal · 11%</option><option value="Home">Home · 8.5%</option><option value="Car">Car · 9.5%</option><option value="Education">Education · 9%</option></select></label><div class="two"><label>Amount (₹)<input name="amount" id="lnAmt" type="number" min="10000" required></label><label>Years (1-30)<input name="years" id="lnYrs" type="number" min="1" max="30" required></label></div><p class="success" id="lnPrev">Enter amount and years to preview your EMI</p><button class="btn">Apply for Loan</button></form></div><div class="card"><h3>My Loans</h3><div id="lnList"></div></div></div></div>
+<div id="pg-emi" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="card narrow"><h2>🧮 EMI Calculator</h2><label>Loan Amount: <b id="cAv"></b><input type="range" id="cA" min="10000" max="1000000" step="10000" value="200000"></label><label>Interest Rate: <b id="cRv"></b><input type="range" id="cR" min="5" max="20" step="0.5" value="10"></label><label>Tenure: <b id="cYv"></b><input type="range" id="cY" min="1" max="30" value="5"></label>
+<div class="sb"><i id="cPb"></i></div><div class="leg"><span><i style="background:#3b82f6"></i>Principal</span><span><i style="background:#e0b341"></i>Interest</span></div>
+<div class="stats"><div class="stat g"><small>Monthly EMI</small><b id="cE"></b></div><div class="stat r"><small>Total Interest</small><b id="cI"></b></div><div class="stat"><small>Total Payable</small><b id="cT"></b></div></div></div></div>
+<div id="pg-set" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="card tilt narrow"><h2>⚙️ Change Password</h2><form id="pw"><label>Current Password<input name="old" type="password" required></label><label>New Password (min 6)<input name="new" type="password" minlength="6" required></label><button class="btn">Update Password</button></form></div></div>
+<div id="pg-hist" class="pg" hidden><button class="back" data-go="dash">← Back to Dashboard</button><div class="card"><div class="bar"><h3>📜 Transaction History</h3><div class="tools"><input id="q" placeholder="🔍 Search..."><select id="flt"><option value="">All</option><option value="in">Money In</option><option value="out">Money Out</option></select><button class="sm" id="csv">⬇ CSV</button><button class="sm" id="prt">🖨 Print</button></div></div>
+      <div class="scroll"><table><thead><tr><th>Date</th><th>ID</th><th>Type</th><th>Details</th><th class="r">Amount</th><th class="r">Balance</th></tr></thead><tbody id="uHist"></tbody></table></div></div></div>
+  </div>
+</section>
+
+<section id="adminView" class="shell" hidden>
+  <nav class="side"><button data-go="ovr" class="on">📊 Overview</button><button data-go="accs">👥 Accounts</button><button data-go="txs">⚡ Transactions</button><button data-go="aloan">💼 Loans</button></nav>
+  <div class="content">
+    <div id="pg-ovr" class="pg"><button class="back" data-out="1">← Back to Home (Logout)</button><h2 class="hello">🛡️ Admin Control Center</h2>
+      <div class="stats four"><div class="stat tilt"><small>Customers</small><b id="sCus">0</b></div><div class="stat tilt g"><small>Total Deposits</small><b id="sDep">₹0</b></div><div class="stat tilt r"><small>Frozen Accounts</small><b id="sFz">0</b></div><div class="stat tilt"><small>Avg Balance</small><b id="sAvg">₹0</b></div></div>
+      <div class="card"><h3>🏆 Top Account Balances</h3><div id="bars"></div></div></div>
+    <div id="pg-accs" class="pg" hidden><button class="back" data-go="ovr">← Back to Overview</button><div class="card"><div class="bar"><h3>All Accounts</h3><div class="tools"><input id="aq" placeholder="🔍 Search name / number..."></div></div>
+      <div class="scroll"><table><thead><tr><th>Acc No.</th><th>Type</th><th>Name</th><th>Phone</th><th>Email</th><th class="r">Balance</th><th>Status</th><th>Actions</th></tr></thead><tbody id="aAcc"></tbody></table></div></div></div>
+    <div id="pg-ahist" class="pg" hidden><button class="back" data-go="accs">← Back to Accounts</button><div class="card"><h3 id="histTitle">Account History</h3><div class="scroll"><table><thead><tr><th>Date</th><th>ID</th><th>Type</th><th>Details</th><th class="r">Amount</th><th class="r">Balance</th></tr></thead><tbody id="aHist"></tbody></table></div></div></div>
+    <div id="pg-aloan" class="pg" hidden><button class="back" data-go="ovr">← Back to Overview</button><div class="card"><h3>💼 Loan Applications</h3><div class="scroll"><table><thead><tr><th>ID</th><th>Customer</th><th>Type</th><th class="r">Amount</th><th>Rate</th><th>Tenure</th><th class="r">EMI</th><th>Status</th><th>Action</th></tr></thead><tbody id="aLoan"></tbody></table></div></div></div>
+    <div id="pg-txs" class="pg" hidden><button class="back" data-go="ovr">← Back to Overview</button><div class="card"><h3>⚡ Recent Transactions (all customers)</h3><div class="scroll"><table><thead><tr><th>Date</th><th>Account</th><th>Type</th><th>Details</th><th class="r">Amount</th></tr></thead><tbody id="aTx"></tbody></table></div></div></div>
+  </div>
+</section>
+</main>
+<div id="toast"></div>
+<footer>© Thakur Bank · Made with ♥ in Java</footer>
+<script src="app.js"></script>
+</body></html>
